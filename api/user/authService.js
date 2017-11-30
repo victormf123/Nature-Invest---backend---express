@@ -8,8 +8,8 @@ const bcrypt = require('bcrypt')
 const User = require('./user')
 const env = require('../../.env')
 
-const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,12})/
+const emailRegex = /\S+@\S+\.\S+/;
+const passwordRegex = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,12})/;
 
     const sendErrorsFromDB = (res, dbErrors) => {
         const errors = []
@@ -50,6 +50,7 @@ const signup = (req, res, next) => {
     const email = req.body.email || ''
     const password = req.body.password || ''
     const confirmPassword = req.body.confirm_password || ''
+    console.log(req.body)
     if(!email.match(emailRegex)) {
         return res.status(400).send({errors: ['O e-mail informado está inválido']})
         }
