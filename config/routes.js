@@ -16,8 +16,16 @@ module.exports = function (server) {
     const campanhaGetService = require('../api/campanha/getsCampanhasService')
     openApi.get('/getCampanhas', campanhaGetService.getCampanhas)
 
+    const getDestaque = require('../api/destaqueTop/getDestaque')
+    openApi.get('/getDestaque', getDestaque.getCampanhaDestaque)
+
+    const destaqueTopService = require('../api/destaqueTop/destaqueTopService')
+    destaqueTopService.register(openApi, '/destaqueTop')
+
     const categoriasCamanhaService = require('../api/categoriasCampanha/categoriasCampanhaService')
     categoriasCamanhaService.register(openApi, '/categoriasCampanha')
+
+
   /*
      * Rotas protegidas por Token JWT
   */
