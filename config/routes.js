@@ -15,6 +15,10 @@ module.exports = function (server) {
     openApi.get('/getCategorias', Categorias.getCategorias)
     const campanhaGetService = require('../api/campanha/getsCampanhasService')
     openApi.get('/getCampanhas', campanhaGetService.getCampanhas)
+    openApi.get('/getCampanhasRetaFinal', campanhaGetService.getCampanhasRetaFinal)
+    openApi.get('/getCampanhasCampanhasRecemLancados', campanhaGetService.getCampanhasCampanhasRecemLancados)
+    openApi.get('/getCampanhaById/:id', campanhaGetService.getCampanhaById)
+
 
     const getDestaque = require('../api/destaqueTop/getDestaque')
     openApi.get('/getDestaque', getDestaque.getCampanhaDestaque)

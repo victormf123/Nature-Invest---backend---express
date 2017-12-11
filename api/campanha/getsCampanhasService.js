@@ -15,5 +15,39 @@ const getCampanhas = (req, res, next) => {
 
 }
 
+const getCampanhasRetaFinal = (req, res, next) => {
+    campanhas.$where('this.valor_arrecadado >= ( this.orcamento * 0.7 )').exec((err, campanhas) => {
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(200).send(campanhas)
+        }
+    })
+    
 
-module.exports = { getCampanhas }
+}
+
+const getCampanhasCampanhasRecemLancados = (req, res, next) => {
+    campanhas.$where('this.valor_arrecadado <= ( this.orcamento * 0.3 )').exec((err, campanhas) => {
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(200).send(campanhas)
+        }
+    })
+}
+
+const getCampanhaById = (req, res, next) => {
+    let _id = req.params.id
+    campanhas.findById(_id, (err, campanha) => {
+        if(err){
+            res.status(500).send(err)
+        }else{
+            res.status(200).send(campanha)
+        }
+    })
+
+}
+
+
+module.exports = { getCampanhas, getCampanhasRetaFinal, getCampanhasCampanhasRecemLancados, getCampanhaById }
